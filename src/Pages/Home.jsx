@@ -86,32 +86,36 @@ const Home = () => {
     }
   }
 
-  const [categoryVisable, setCategoryVisable] = useState(false);
+  const [panelVisible, setPanelVisible] = useState(false);
   const handleVisable = () => {
-    setCategoryVisable(!categoryVisable)
+    setPanelVisible(!panelVisible)
   }
 
   return (
     <>
       <div className="font-sans p-4 lg:max-w-6xl md:max-w-3xl flex justify-center ">
-        <div className="h-max sm:mr-10">
-          <button onClick={handleVisable} className="p-3 capitalize cursor-pointer border-b-2 text-white text-center ml-2 rounded-md bg-[#ff523b]">Category</button>
-          {categoryVisable && 
-            <ul className="flex flex-col">
+        <div className="h-max 2xl:ml-20 ">
+          <button onClick={handleVisable} className="py-2 px-1 capitalize cursor-pointer border-b-2 text-white text-center ml-2 rounded-md bg-[#ff523b] ">Products</button>
+          <div
+            className={`fixed top-20 right-0 w-48  bg-white z-50 transition-transform ${
+              panelVisible ? 'transform translate-x-0' : 'transform translate-x-full'
+            }`}
+          >
+            <ul className="flex flex-col max-h-[80vh] overflow-y-auto p-2">
               {category.map((cat, i) => (
                 <li
                   key={i}
                   onClick={() => handleSearch(cat)}
-                  className={`p-3 capitalize cursor-pointer border-b-2 text-white text-center ml-2 rounded-md bg-[#ff523b] md:w-[150px] lg:w-[150px] ${selectedCategory === cat ? 'bg-[#e04b3b]' : ''}`}
+                  className={`p-2 capitalize cursor-pointer border-b-2 text-white text-center ml-2 rounded-md bg-[#ff523b]  ${selectedCategory === cat ? 'bg-[#e04b3b]' : ''}`}
                 >
                   {cat}
                 </li>
               ))}
             </ul>
-          }
+          </div>
         </div>
 
-        <div className="ml-2 grid grid-cols-1  sm:gap-x-[30px] sm:grid-cols-2 md:grid-cols-2 md:gap-x-[100px] lg:grid-cols-3 lg:gap-x-[100px] xl:grid-cols-4 xl:gap-x-[200px]  2xl:gap-x-[260px] gap-y-5 2xl:grid-cols-5  " >
+        <div className="2xl:ml-4 xl:ml-2 lg:ml-4 md:ml-8 sm:ml-2 ml-2 grid grid-cols-1  sm:gap-x-[30px] sm:grid-cols-2 md:grid-cols-2 md:gap-x-[100px] lg:grid-cols-3 lg:gap-x-[100px] xl:grid-cols-4 xl:gap-x-[200px]  2xl:gap-x-[260px] gap-y-5 2xl:grid-cols-5  " >
           {slicedArr.map((ele, index) => {
             return (
               <div key={index} className="bg-white flex flex-col overflow-hidden cursor-pointer hover:shadow-md transition-all shadow-xl w-60">
