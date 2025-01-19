@@ -5,12 +5,17 @@ import { Link } from 'react-router-dom'
 import { deleteItems } from '../store/CartSlice'
 
 const Wishlist = () => {
+
   let dispatch = useDispatch()
   let store = useSelector((state)=>state.cart)
+  
   console.log(store)
+ 
+
+  
   return (
     <>
-     <div className="font-sans p-4 mx-auto lg:max-w-6xl md:max-w-3xl">
+     <div className="font-sans p-4 mx-auto lg:max-w-6xl md:max-w-3xl ">
      { store.likeCart.length>0 ?
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap sm:gap-6 ">
         {
@@ -31,7 +36,7 @@ const Wishlist = () => {
                 </div>
               </div>
               <div className="flex items-center gap-2 mt-4">
-              <button onClick={()=>dispatch(deleteItems(index))} className="text-sm px-2 min-h-[36px] w-28 bg-[#ff523b] hover:bg-[#ff442cd1] text-white tracking-wide ml-auto outline-none border-none rounded">Remove</button>
+              <button onClick={()=>dispatch(deleteItems(ele))} className="text-sm px-2 min-h-[36px] w-28 bg-[#ff523b] hover:bg-[#ff442cd1] text-white tracking-wide ml-auto outline-none border-none rounded">Remove</button>
                 <button onClick={()=>dispatch(addToCart(ele))} className="text-sm px-2 min-h-[36px] w-32 bg-[#ff523b] hover:bg-[#ff442cd1] text-white tracking-wide ml-auto outline-none border-none rounded">Add to cart</button>
               </div>
             </div>

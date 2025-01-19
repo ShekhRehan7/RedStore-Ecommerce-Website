@@ -9,7 +9,7 @@ const initialState = {
 }
 
 export const CartSlice = createSlice({
-  name: 'counter',
+  name: 'castslice',
   initialState,
   reducers: {
     addToCart: (state,action)=>{
@@ -20,8 +20,10 @@ export const CartSlice = createSlice({
         
       }
       else{
-        action.payload.quantity= 1;
-        state.arr.push(action.payload)
+        let copyObj = {...action.payload}
+       copyObj.quantity= 1;
+        state.arr.push(copyObj)
+        // state.likeCart = state.likeCart.filter((item) => item.id !== action.payload.id);
         toast.success("Item Added Successfully",{position:"top-right"})
 
       }
@@ -43,8 +45,10 @@ export const CartSlice = createSlice({
     
     deleteItems:(state,action)=>{
       console.log(action);
-      state.arr.splice(action.payload,1)
-      state.likeCart.splice(action.payload,1)
+      // state.arr.splice(action.payload,1)
+      state.arr = state.arr.filter(item => item.id !== action.payload.id)
+      // state.likeCart.splice(action.payload,1)
+      state.likeCart = state.likeCart.filter(item => item.id !== action.payload.id);
     },
     updateIncrement:(state,action)=>{
       let obj = {...action.payload}
@@ -69,12 +73,13 @@ export const CartSlice = createSlice({
        console.log(index);
        state.arr[index]= obj;
      
-    }
+    },
+  
    
   },
 })
 
 
-export const { addToCart , likeCart, deleteItems, updateIncrement, updateDecrement} = CartSlice.actions
+export const { addToCart , likeCart, deleteItems, updateIncrement, updateDecrement } = CartSlice.actions
 
 export default CartSlice.reducer

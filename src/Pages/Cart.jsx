@@ -1,6 +1,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteItems, updateDecrement, updateIncrement } from '../store/CartSlice';
+import { totalprice } from '../store/Totalprice';
+
 import {Link} from 'react-router-dom'
 
 
@@ -23,13 +25,15 @@ const Cart = () => {
     let shipping = price *5/100
     let finalprice = price - discount + tax + shipping
     // console.log(finalprice)
+    dispatch(totalprice(finalprice))
+    
 
 
     
 
   return (
     <>
-    <div className="font-sans md:max-w-4xl max-md:max-w-xl mx-auto bg-white py-4">
+    <div className="font-sans md:max-w-4xl max-md:max-w-xl mx-auto bg-white py-4 ">
  { store.arr.length>0 ?
   <div className="grid md:grid-cols-3 gap-4">
   <div className="md:col-span-2 bg-gray-100 p-4 rounded-md  flex flex-col gap-y-4">
@@ -45,7 +49,7 @@ const Cart = () => {
               </div>
               <div>
                 <h3 className="text-base font-bold text-gray-800">{ele.title}</h3>
-                <button onClick={()=>dispatch(deleteItems(index))} className="text-xs text-red-500 cursor-pointer mt-0.5">Remove</button>
+                <button onClick={()=>dispatch(deleteItems(ele))} className="text-xs text-red-500 cursor-pointer mt-0.5">Remove</button>
                 <div className="flex gap-4 mt-4">
                   
                   <div>
@@ -87,7 +91,7 @@ const Cart = () => {
         <li className="flex flex-wrap gap-4 text-base font-bold">Total <span className="ml-auto">${finalprice.toFixed(2)}</span></li>
       </ul>
       <div className="mt-8 space-y-2 flex flex-col ">
-        <button type="button" className="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-[#ff523b] hover:bg-[#ec4e39] text-white rounded-md">Checkout</button>
+        <Link to={"/checkout"}   className="text-sm px-4 py-2.5 w-full text-center font-semibold tracking-wide bg-[#ff523b] hover:bg-[#ec4e39] text-white rounded-md">Checkout</Link>
         <Link to={"/"}   className="text-l px-4 py-2.5 w-full font-semibold tracking-wide bg-white  text-center border text-[#ff523b] border-gray-300 rounded-md">Continue Shopping</Link>
          
       </div>
@@ -96,7 +100,6 @@ const Cart = () => {
       <h1 className='text-center text-4xl mt-12'>Cart is empty</h1> 
     }
 </div>
-
 
     </>
   )

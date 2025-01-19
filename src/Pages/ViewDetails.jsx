@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import {useLocation} from "react-router-dom"
-import { likeCart } from '../store/CartSlice';
+import { addToCart, likeCart } from '../store/CartSlice';
 const ViewDetails = () => {
   let dispatch = useDispatch();
   let location =useLocation();
@@ -50,7 +50,7 @@ const ViewDetails = () => {
           <div className="mt-6 flex flex-wrap gap-4">
             <button onClick={()=>dispatch(likeCart(data))} className="px-4 py-3 w-[45%] border border-gray-300 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-semibold  ">Add
               to wishlist</button>
-            <button type="button" className="px-4 py-3 w-[45%] border  bg-[#ff523b] hover:bg-[#ff2222] text-white text-sm font-semibold  ">Add
+            <button type="button" onClick={()=>dispatch(addToCart(data))} className="px-4 py-3 w-[45%] border  bg-[#ff523b] hover:bg-[#ff2222] text-white text-sm font-semibold  ">Add
               to cart</button>
           </div>
         </div>
