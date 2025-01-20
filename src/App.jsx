@@ -12,6 +12,7 @@ import Checkout from './Pages/Checkout';
 import About from './Pages/About';
 import Footer from './components/Footer';
 import { useSelector } from 'react-redux';
+import Forget from './Pages/Forget';
 
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
    <Route path='/view' element={login===true? <ViewDetails /> : <Navigate to="/login"/>}/>
    <Route path='/register' element={login===false? <SignUp /> : <Navigate to="/"/>}/>
    <Route path='/login' element={login===false? <Login /> : <Navigate to="/"/>}/>
+   <Route path='/forget' element={<Forget/>}/>
    <Route path='/checkout' element={login===true?<Checkout/>: <Navigate to={"/login"}/>}/>
    </Routes>
    <Footer/>

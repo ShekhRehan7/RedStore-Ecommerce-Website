@@ -17,10 +17,10 @@ const Wishlist = () => {
     <>
      <div className="font-sans p-4 mx-auto lg:max-w-6xl md:max-w-3xl ">
      { store.likeCart.length>0 ?
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap sm:gap-6 ">
+      <div className="grid  grid-cols-1 place-items-center gap-y-4 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 md:gap-6 sm:grid-cols-2 sm:place-items-center sm:gap-y-4 2xl:grid-cols-4">
         {
           store.likeCart.map((ele,index)=>{
-            return <div className="bg-white flex flex-col overflow-hidden cursor-pointer hover:shadow-md transition-all  shadow-xl">
+            return <div className="bg-white flex flex-col overflow-hidden cursor-pointer hover:shadow-md transition-all  shadow-xl w-60">
             <div className="w-full" >
             <Link to={"/view"} state={ele}><img src={ele.thumbnail} alt="Image" className="w-full object-cover object-top aspect-[230/307]" /></Link>
             </div>
